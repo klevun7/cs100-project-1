@@ -23,7 +23,7 @@ void Node::printSolution() const {
     cout << "Step:" << endl;
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            cout << state[i][j];
+            cout << state[i][j] << " ";
         }
         cout << endl;
     }
