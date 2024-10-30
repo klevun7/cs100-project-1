@@ -1,5 +1,4 @@
 #include "problem.h"
-
 #include <iostream>
 #include <cmath>
 
@@ -48,7 +47,7 @@ int euclideanDistanceHeuristic(int state[N][N])
     return totalDistance;
 }
 
-int uniformCostHeuristic(int state[N][N])
+int uniformCost(int state[N][N])
 {
     return 0;
 }
