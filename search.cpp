@@ -1,17 +1,21 @@
 #include "search.h"
 #include "problem.h"
-#include <limits.h>
+#include <iostream>
+
+using namespace std;
 
 Node* generalSearch(int initialState[N][N], int (*heuristicFunc)(int state[N][N])) {
-    Node* frontier[INT_MAX];
-    Node* explored[INT_MAX];
-    int frontierSize, exploredSize = 0;
+    Node* frontier[1000];
+    Node* explored[1000];
+    int frontierSize = 0;
+    int exploredSize = 0;
 
     Node* root = new Node(initialState, nullptr, 0, heuristicFunc(initialState));
     frontier[frontierSize] = root;
     frontierSize = frontierSize + 1;
 
-    while (frontier > 0) {
+    while (frontierSize > 0) {
+
         int minIndex = 0;
 
         for(int i = 1; i < frontierSize; i++) {
@@ -25,10 +29,10 @@ Node* generalSearch(int initialState[N][N], int (*heuristicFunc)(int state[N][N]
         for (int i = minIndex; i < frontierSize - 1; i++) {
             frontier[i] = frontier[i + 1];
         }
-        frontierSize--;
-
+        frontierSize = frontierSize - 1;
+        
         if (isGoal(currentNode->state)) {
-            return currentNode;
+            return currentNode;                                                     
         }
 
         explored[exploredSize] = currentNode;
@@ -46,5 +50,4 @@ Node* generalSearch(int initialState[N][N], int (*heuristicFunc)(int state[N][N]
     }
 
     return nullptr;
-    
 }
