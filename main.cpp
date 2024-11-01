@@ -117,15 +117,24 @@ int main() {
         
         
         result->printSolution();
+
+
+        Node* node = result;
+        while (node != nullptr) {
+            Node* parent = node->parent;
+            delete node;
+            node = parent;
+        }
+
         cout << "Goal!!" << endl;
         cout << endl;
         cout << "To solve this problem the search algorithm expanded a total of " << nodesExpanded << " nodes." << endl;
         cout << "The maximum number of nodes in the queue at any one time was " << maxFrontierSize << " nodes." << endl;
         cout << "The depth of the goal node was " << goalDepth << "."  << endl;
         
+
     } else {
         cout << "No solution found." << endl;
     }
-
     return 0;
 }
