@@ -1,15 +1,29 @@
 #include "search.h"
 #include "problem.h"
+#include "node.h"
 #include <iostream>
 #include <limits>
 
 using namespace std;
 
+int calculateDepth(Node* node){
+    int goalDepth = 0;
+    Node* currentNode = node;
+    while (currentNode->parent != nullptr) {
+        goalDepth++;
+        currentNode = currentNode->parent;
+    }
+    return goalDepth;
+}
+
 int main() {
     cout << "Welcome to dchau029/klevun7 8 puzzle solver." << endl;
     
     int choice;
-    int initialState[N][N]; 
+    int initialState[N][N];
+    int nodesExpanded = 0;
+    int maxFrontierSize = 0;
+
     
     while(true) {
         cout << "Type “1” to use a default puzzle, or “2” to enter your own puzzle." << endl;
@@ -96,10 +110,19 @@ int main() {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-    Node* result = generalSearch(initialState, heuristicFunc);
+    Node* result = generalSearch(initialState, heuristicFunc, nodesExpanded, maxFrontierSize);
+    int goalDepth = calculateDepth(result);
 
     if (result != nullptr) {
+        
+        
         result->printSolution();
+        cout << "Goal!!" << endl;
+        cout << endl;
+        cout << "To solve this problem the search algorithm expanded a total of " << nodesExpanded << " nodes." << endl;
+        cout << "The maximum number of nodes in the queue at any one time was " << maxFrontierSize << " nodes." << endl;
+        cout << "The depth of the goal node was " << goalDepth << "."  << endl;
+        
     } else {
         cout << "No solution found." << endl;
     }

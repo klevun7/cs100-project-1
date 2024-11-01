@@ -79,8 +79,8 @@ bool isGoal(int state[N][N])
 
 void expand(int state[N][N], int nextStates[4][N][N], int *nextCount)
 {
-    int blankX;
-    int blankY;
+    int blankX = 0;
+    int blankY = 0;
 
     for (int i = 0; i < N; i++)
     {
