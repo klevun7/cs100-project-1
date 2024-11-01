@@ -26,6 +26,10 @@ void Node::printSolution() const {
             cout << state[i][j] << " ";
         }
         cout << endl;
+        
     }
+    cout << "g(n) = " << cost << ", h(n) = " << heuristic << endl;
     cout << endl;
+
+
 }
