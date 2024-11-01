@@ -100,9 +100,15 @@ int main() {
 
     if (result != nullptr) {
         result->printSolution();
+
+        Node* node = result;
+        while (node != nullptr) {
+            Node* parent = node->parent;
+            delete node;
+            node = parent;
+        }
     } else {
         cout << "No solution found." << endl;
     }
-
     return 0;
 }
